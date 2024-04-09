@@ -10,7 +10,9 @@ local Window = Library.CreateLib("The rake Noob Edition V1", "BloodTheme")
 local Main = Window:NewTab("Main")
 local Combat = Window:NewTab("Combat")
 local Movement = Window:NewTab("Movement")
-local Eps = Window:NewTab("Esp")
+local Esp = Window:NewTab("Esp")
+local World = Window:NewTab("World")
+local Scripts = Window:NewTab("Scripts")
 local Gui = Window:NewTab("Gui")
 local Credits = Window:NewTab("Credits")
 
@@ -18,6 +20,8 @@ local MainSection = Main:NewSection("Main")
 local CombatSection = Combat:NewSection("Combat")
 local MovementSection = Movement:NewSection("Movement")
 local EspSection = Esp:NewSection("Esp")
+local WorldSection = World:NewSection("World")
+local ScriptsSection = Scripts:NewSection("Scripts")
 local GuiSection = Gui:NewSection("Gui")
 local CreditsSection = Credits:NewSection("Creator: arbuzik.new")
 
@@ -33,13 +37,27 @@ end)
 
 MainSection:NewButton("Unlock Camera", "", function()
     game.Players.LocalPlayer.CameraMode = Enum.CameraMode.Classic
+    game.Players.LocalPlayer.CameraMinZoomDistance = 0.5
     game.Players.LocalPlayer.CameraMaxZoomDistance = 999
-    game.Players.LocalPlayer.DevCameraOcclusion = Enum.DevCameraOcclusionMode.Inviscam
+    game.Players.LocalPlayer.DevCameraOcclusionMode = 1
 end)
 
 MainSection:NewButton("Unlock Shop", "", function()
     game.Workspace.LocationsFolder.Shop.OutsidePlrPos:Destroy()
     game.Workspace.LocationsFolder.Shop.ShopDoor:Destroy()
+end)
+
+MainSection:NewButton("No Hud", "", function()
+    game.Players.LocalPlayer.PlayerGui.RakeChaseGui:Destroy()
+    game.Players.LocalPlayer.PlayerGui.HoursGui:Destroy()
+end)
+
+MainSection:NewButton("Remove Crawling", "", function()
+    while game:GetService("RunService").RenderStepped:wait() do
+        game.Players.LocalPlayer.Character.CharValues.Crawling.Value = false
+        game.Players.LocalPlayer.Character.CharValues.NearRake.Value = false
+        game.Players.LocalPlayer.Character.CharValues.CantRun.Value = false
+    end
 end)
 
 MainSection:NewButton("Fullbright", "", function()
@@ -52,26 +70,7 @@ MainSection:NewButton("Fullbright", "", function()
 end)
 
 -- Combat
-CombatSection:NewToggle("Freeze The Rake", "WOW", function(state)
-    if state then
-        game:GetService("Workspace").RakoofNPC.HumanoidRootPart.CFrame = player.CFrame
-        game:GetService("Workspace").RakoofNPC.HumanoidRootPart.Anchored = true
-        game:GetService("Workspace").RakoofNPC.Head.Anchored = true
-        game:GetService("Workspace").RakoofNPC.Torso.Anchored = true
-        game:GetService("Workspace").RakoofNPC["Left Arm"].Anchored = true
-        game:GetService("Workspace").RakoofNPC["Right Arm"].Anchored = true
-        game:GetService("Workspace").RakoofNPC["Left Leg"].Anchored = true
-        game:GetService("Workspace").RakoofNPC["Right Leg"].Anchored = true
-    else
-        game:GetService("Workspace").RakoofNPC.HumanoidRootPart.Anchored = false
-        game:GetService("Workspace").RakoofNPC.Head.Anchored = false
-        game:GetService("Workspace").RakoofNPC.Torso.Anchored = false
-        game:GetService("Workspace").RakoofNPC["Left Arm"].Anchored = false
-        game:GetService("Workspace").RakoofNPC["Right Arm"].Anchored = false
-        game:GetService("Workspace").RakoofNPC["Left Leg"].Anchored = false
-        game:GetService("Workspace").RakoofNPC["Right Leg"].Anchored = false
-    end
-end)
+
 
 -- Movement
 MovementSection:NewButton("Inf stamina", "", function()
@@ -86,9 +85,10 @@ MovementSection:NewButton("Inf stamina", "", function()
 end)
 
 MovementSection:NewTextBox("Bypassing JumpPower", "Yay", function(power)
+    _G.jump = power
     uis.InputBegan:Connect(function(input)
         if input.KeyCode == Enum.KeyCode.Space then
-            game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0, power, 0)
+            game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0, _G.jump, 0)
         end
     end)
 end)
@@ -127,7 +127,7 @@ EspSection:NewButton("Rakoof esp", "", function()
             TextLabel1.TextScaled = false
             TextLabel1.TextStrokeTransparency = 0
             TextLabel1.TextSize = 8
-            TextLabel1.TextColor3 = Color3.fromRGB(225, 0, 0)
+            TextLabel1.TextColor3 = Color3.fromRGB(225, 255, 0)
             TextLabel1.Position = UDim2.new(0, 0, -0.3, 0)
             esp.Adornee = game.Workspace.RakoofNPC
             esp.ZIndex = 0
@@ -292,7 +292,37 @@ EspSection:NewButton("Flare spawns esp", "", function()
     end
 end)
 
+-- World
+WorldSection:NewButton("Remove power damage", "", function()
+    game.Workspace.LocationsFolder.PowerStation.PowerDamage:Destroy()
+end)
+
+WorldSection:NewButton("Remove Trees", "", function()
+    game.Workspace.NatureFolder.Trees:Destroy()
+end)
+
+WorldSection:NewButton("Remove Rocks", "", function()
+    game.Workspace.NatureFolder.Rocks:Destroy()
+end)
+
+WorldSection:NewButton("Remove Bush", "", function()
+    game.Workspace.NatureFolder.Bush:Destroy()
+end)
+
+-- Scripts
+ScriptsSection:NewButton("Dark dex", "", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/main/Universal/BypassedDarkDexV3.lua", true))()
+end)
+
+ScriptsSection:NewButton("Simple Spy", "", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/SimpleSpyV3/main.lua"))()
+end)
+
+ScriptsSection:NewButton("infinite Yield", "", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
+end)
+
 -- Gui
-GUISection:NewKeybind("Toggle GUI", "", Enum.KeyCode.L, function()
+GuiSection:NewKeybind("Toggle GUI", "", Enum.KeyCode.L, function()
 	Library:ToggleUI()
 end)
