@@ -202,33 +202,35 @@ end)
 EspSection:NewButton("Rakoof esp", "", function()
     while task.wait(0.5) do
         pcall (function()
-            local BillboardGui = Instance.new("BillboardGui")
-            local TextLabel = Instance.new("TextLabel")
-            local esp = Instance.new("BoxHandleAdornment",game.Workspace.RakoofNPC)
-            BillboardGui.Parent = game.Workspace.RakoofNPC
-            BillboardGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-            BillboardGui.Active = true
-            BillboardGui.AlwaysOnTop = true
-            BillboardGui.LightInfluence = 1
-            BillboardGui.Size = UDim2.new(0, 200, 0, 50)
-            BillboardGui.StudsOffset = Vector3.new(0, 2.5, 0)
-            TextLabel.Parent = BillboardGui
-            TextLabel.BackgroundTransparency = 1
-            TextLabel.Size = UDim2.new(0, 200, 0, 50)
-            TextLabel.Font = Enum.Font.SourceSans
-            TextLabel.Text = "The Rakoof"
-            TextLabel.Font = "Legacy"
-            TextLabel.TextColor3 = Color3.new(225, 255, 0)
-            TextLabel.TextScaled = false
-            TextLabel.TextStrokeTransparency = 0
-            TextLabel.TextSize = 8
-            TextLabel.TextWrapped = true
-            esp.Adornee = game.Workspace.RakoofNPC
-            esp.ZIndex = 0
-            esp.AlwaysOnTop = true
-            esp.Color3 = Color3.fromRGB(225, 255, 0)
-            esp.Transparency = 0.5
-            esp.Size = Vector3.new(5,6,1,5)
+            if game.Workspace.RakoofNPC:FindFirstChild("BillboardGui") == nil then
+                local BillboardGui = Instance.new("BillboardGui")
+                local TextLabel = Instance.new("TextLabel")
+                local esp = Instance.new("BoxHandleAdornment",game.Workspace.RakoofNPC)
+                BillboardGui.Parent = game.Workspace.RakoofNPC
+                BillboardGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+                BillboardGui.Active = true
+                BillboardGui.AlwaysOnTop = true
+                BillboardGui.LightInfluence = 1
+                BillboardGui.Size = UDim2.new(0, 200, 0, 50)
+                BillboardGui.StudsOffset = Vector3.new(0, 2.5, 0)
+                TextLabel.Parent = BillboardGui
+                TextLabel.BackgroundTransparency = 1
+                TextLabel.Size = UDim2.new(0, 200, 0, 50)
+                TextLabel.Font = Enum.Font.SourceSans
+                TextLabel.Text = "The Rakoof"
+                TextLabel.Font = "Legacy"
+                TextLabel.TextColor3 = Color3.new(225, 255, 0)
+                TextLabel.TextScaled = false
+                TextLabel.TextStrokeTransparency = 0
+                TextLabel.TextSize = 8
+                TextLabel.TextWrapped = true
+                esp.Adornee = game.Workspace.RakoofNPC
+                esp.ZIndex = 0
+                esp.AlwaysOnTop = true
+                esp.Color3 = Color3.fromRGB(225, 255, 0)
+                esp.Transparency = 0.5
+                esp.Size = Vector3.new(5,6,1,5)
+            end
         end)
     end
 end)
