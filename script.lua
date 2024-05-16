@@ -166,9 +166,9 @@ MainSection:NewButton("GameStats gui", "", function()
 
     while task.wait() do
         pcall(function()
-            RakoofHealthLable.Text = "Rakoof Health: ".. game.Workspace.RakoofNPC.NPC.Health
             GameTimerLable.Text = "Game Time:  ".. game:GetService("ReplicatedStorage").GameTimer.Value
             PowerTimerLable.Text = "Power Time: ".. game:GetService("ReplicatedStorage").PowerTimer.Value
+            RakoofHealthLable.Text = "Rakoof Health: ".. game.Workspace.RakoofNPC.NPC.Health
         end)
     end
 end)
