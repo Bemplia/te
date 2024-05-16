@@ -166,15 +166,16 @@ MainSection:NewButton("GameStats gui", "", function()
 
     while task.wait() do
         pcall(function()
-            RakoofHealthLable.Text = "Rakoof Health: " + game.Workspace.RakoofNPC.NPC.Health
-            GameTimerLable.Text = "Game Time:  " + game:GetService("ReplicatedStorage").GameTimer.Value
-            PowerTimerLable.Text = "Power Time: " + game:GetService("ReplicatedStorage").PowerTimer.Value
+            RakoofHealthLable.Text = "Rakoof Health: ".. game.Workspace.RakoofNPC.NPC.Health
+            GameTimerLable.Text = "Game Time:  ".. game:GetService("ReplicatedStorage").GameTimer.Value
+            PowerTimerLable.Text = "Power Time: ".. game:GetService("ReplicatedStorage").PowerTimer.Value
         end)
     end
 end)
 
 -- Combat
 
+-- loadstring(game:HttpGet("https://raw.githubusercontent.com/Bemplia/te/main/script.lua"))()
 
 -- Movement
 MovementSection:NewButton("Inf stamina", "", function()
@@ -203,7 +204,6 @@ EspSection:NewButton("Rakoof esp", "", function()
         pcall (function()
             local BillboardGui = Instance.new("BillboardGui")
             local TextLabel = Instance.new("TextLabel")
-            local TextLabel1 = Instance.new("TextLabel")
             local esp = Instance.new("BoxHandleAdornment",game.Workspace.RakoofNPC)
             BillboardGui.Parent = game.Workspace.RakoofNPC
             BillboardGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
@@ -223,25 +223,12 @@ EspSection:NewButton("Rakoof esp", "", function()
             TextLabel.TextStrokeTransparency = 0
             TextLabel.TextSize = 8
             TextLabel.TextWrapped = true
-            TextLabel1.Parent = BillboardGui
-            TextLabel1.BackgroundTransparency = 1
-            TextLabel1.Size = UDim2.new(0, 200, 0, 50)
-            TextLabel1.Font = Enum.Font.SourceSans
-            TextLabel1.Font = "Legacy"
-            TextLabel1.TextScaled = false
-            TextLabel1.TextStrokeTransparency = 0
-            TextLabel1.TextSize = 8
-            TextLabel1.TextColor3 = Color3.fromRGB(225, 255, 0)
-            TextLabel1.Position = UDim2.new(0, 0, -0.3, 0)
             esp.Adornee = game.Workspace.RakoofNPC
             esp.ZIndex = 0
             esp.AlwaysOnTop = true
             esp.Color3 = Color3.fromRGB(225, 255, 0)
             esp.Transparency = 0.5
             esp.Size = Vector3.new(5,6,1,5)
-            while task.wait() do
-                TextLabel1.Text = "Health: ".. workspace.RakoofNPC.NPC.Health
-            end
         end)
     end
 end)
