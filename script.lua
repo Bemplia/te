@@ -438,8 +438,6 @@ EspSection:NewButton("Flare esp", "", function()
     end
 end)
 
-EspSection:NewButton("loot rarity esp")
-
 -- World
 WorldSection:NewButton("Remove power damage", "", function()
     game.Workspace.LocationsFolder.PowerStation.PowerDamage:Destroy()
