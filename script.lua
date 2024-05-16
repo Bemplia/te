@@ -61,20 +61,6 @@ MainSection:NewButton("No Hud", "", function()
     game.Players.LocalPlayer.PlayerGui.HoursGui:Destroy()
 end)
 
-MainSection:NewButton("Remove Crawling", "", function()
-    local charv;
-    charv = hookmetamethod(game, "__index", function(self, v)
-        if self == "game.Players.LocalPlayer.Character.CharValues.Crawling" and v == "Value" then
-            return 0
-        elseif self "game.Players.LocalPlayer.Character.CharValues.NearRake" and v == "Value" then
-            return 0
-        elseif self "game.Players.LocalPlayer.Character.CharValues.CantRun" and v == "Value" then
-            return 0
-        end
-        return charv(self,v)
-    end)
-end)
-
 MainSection:NewButton("Fullbright", "", function()
     while task.wait() do
         local Lighting = game:GetService("Lighting")
