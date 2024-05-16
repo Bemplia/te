@@ -62,6 +62,9 @@ MainSection:NewButton("No Hud", "", function()
 end)
 
 MainSection:NewButton("Fullbright", "", function()
+    Lighting.NormalSky:Destroy()
+    Lighting.Atmosphere:Destroy()
+    Lighting.DepthOfField:Destroy()
     while task.wait() do
         local Lighting = game:GetService("Lighting")
         Lighting.Brightness = 2
