@@ -192,13 +192,13 @@ MovementSection:NewButton("Inf stamina", "", function()
         if self == stam and v == "Value" then
             return 100
         elseif self == run and v == "Value" then
-            return 0
+            return false
         elseif self == craw and v == "Value" then
-            return 0
+            return false
         elseif self == rake and v == "Value" then
-            return 0
+            return false
         elseif self == health and v == "Value" then
-            return 0
+            return false
         end
         return stamh(self,v)
     end)
