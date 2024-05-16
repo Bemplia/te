@@ -165,8 +165,8 @@ MainSection:NewButton("GameStats gui", "", function()
     Padding3.PaddingLeft = UDim.new(0, 12);
 
     while task.wait() do
-        GameTimerLable.Text = "Game Time:  ".. game:GetService("ReplicatedStorage").GameTimer.Value
-        PowerTimerLable.Text = "Power Time: ".. game:GetService("ReplicatedStorage").PowerTimer.Value
+        GameTimerLable.Text = "Game Time:  ".. game:GetService("ReplicatedStorage").Values.GameTimer.Value
+        PowerTimerLable.Text = "Power Time: ".. game:GetService("ReplicatedStorage").Values.PowerTimer.Value
         pcall(function()
             RakoofHealthLable.Text = "Rakoof Health: ".. game.Workspace.RakoofNPC.NPC.Health
         end)
