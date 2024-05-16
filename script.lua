@@ -183,10 +183,22 @@ end)
 -- Movement
 MovementSection:NewButton("Inf stamina", "", function()
     local stam = game.Players.LocalPlayer.Character.CharValues.StaminaPercentValue
+    local run = game.Players.LocalPlayer.Character.CharValues.CantRun
+    local craw = game.Players.LocalPlayer.Character.CharValues.Crawling
+    local rake = game.Players.LocalPlayer.Character.CharValues.NearRake
+    local health = game.Players.LocalPlayer.Character.CharValues.HumanoidLowHealth
     local stamh;
     stamh = hookmetamethod(game, "__index", function(self, v)
         if self == stam and v == "Value" then
             return 100
+        elseif self == run and v == "Value" then
+            return 0
+        elseif self == craw and v == "Value" then
+            return 0
+        elseif self == rake and v == "Value" then
+            return 0
+        elseif self == health and v == "Value" then
+            return 0
         end
         return stamh(self,v)
     end)
