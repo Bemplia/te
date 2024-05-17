@@ -139,7 +139,7 @@ MainSection:NewButton("GameStats gui", "", function()
     HourLable.TextColor3 = Color3.fromRGB(0, 0, 0);
     HourLable.Size = UDim2.new(1, 0, 0.2, 0);
     HourLable.BorderColor3 = Color3.fromRGB(0, 0, 0);
-    HourLable.Text = "Power Time:";
+    HourLable.Text = "Hour:";
     HourLable.Name = "Label";
     HourLable.BackgroundTransparency = 1;
 
@@ -166,7 +166,7 @@ MainSection:NewButton("GameStats gui", "", function()
     GameTimerLable.TextColor3 = Color3.fromRGB(0, 0, 0);
     GameTimerLable.Size = UDim2.new(1, 0, 0.2, 0);
     GameTimerLable.BorderColor3 = Color3.fromRGB(0, 0, 0);
-    GameTimerLable.Text = "Hour:";
+    GameTimerLable.Text = "Game Time:";
     GameTimerLable.Name = "Label";
     GameTimerLable.BackgroundTransparency = 1;
 
