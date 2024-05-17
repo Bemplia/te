@@ -87,12 +87,14 @@ MainSection:NewButton("GameStats gui", "", function()
     local UICorner2 = Instance.new("UICorner", Holder)
     local List = Instance.new("UIListLayout", Holder)
     local CornerFixer = Instance.new("Frame", Holder)
+    local HourLable = Instance.new("TextLabel", Holder)
+    local Padding1 = Instance.new("UIPadding", HourLable)
     local RakoofHealthLable = Instance.new("TextLabel", Holder)
-    local Padding1 = Instance.new("UIPadding", RakoofHealthLable)
+    local Padding2 = Instance.new("UIPadding", RakoofHealthLable)
     local GameTimerLable = Instance.new("TextLabel", Holder)
-    local Padding2 = Instance.new("UIPadding", GameTimerLable)
+    local Padding3 = Instance.new("UIPadding", GameTimerLable)
     local PowerTimerLable = Instance.new("TextLabel", Holder)
-    local Padding3 = Instance.new("UIPadding", PowerTimerLable)
+    local Padding4 = Instance.new("UIPadding", PowerTimerLable)
 
     GameStats.Name = "GameStats";
     GameStats.ZIndexBehavior = Enum.ZIndexBehavior.Sibling;
@@ -128,17 +130,32 @@ MainSection:NewButton("GameStats gui", "", function()
     CornerFixer.BorderColor3 = Color3.fromRGB(0, 0, 0);
     CornerFixer.Name = "CornerFixer";
 
+    HourLable.TextWrapped = true;
+    HourLable.BorderSizePixel = 0;
+    HourLable.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+    HourLable.TextXAlignment = Enum.TextXAlignment.Left;
+    HourLable.FontFace = Font.new("rbxasset://fonts/families/Ubuntu.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+    HourLable.TextSize = 20;
+    HourLable.TextColor3 = Color3.fromRGB(0, 0, 0);
+    HourLable.Size = UDim2.new(1, 0, 0.2, 0);
+    HourLable.BorderColor3 = Color3.fromRGB(0, 0, 0);
+    HourLable.Text = "Power Time:";
+    HourLable.Name = "Label";
+    HourLable.BackgroundTransparency = 1;
+
+    Padding1.PaddingLeft = UDim.new(0, 12);
+
     RakoofHealthLable.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
     RakoofHealthLable.TextXAlignment = Enum.TextXAlignment.Left;
     RakoofHealthLable.FontFace = Font.new("rbxasset://fonts/families/Ubuntu.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal);
     RakoofHealthLable.TextSize = 20;
     RakoofHealthLable.TextColor3 = Color3.fromRGB(0, 0, 0);
-    RakoofHealthLable.Size = UDim2.new(1, 0, 0.25, 0);
+    RakoofHealthLable.Size = UDim2.new(1, 0, 0.2, 0);
     RakoofHealthLable.Text = "Rakoof Health:";
     RakoofHealthLable.Name = "Label";
     RakoofHealthLable.BackgroundTransparency = 1;
 
-    Padding1.PaddingLeft = UDim.new(0, 12);
+    Padding2.PaddingLeft = UDim.new(0, 12);
 
     GameTimerLable.TextWrapped = true;
     GameTimerLable.BorderSizePixel = 0;
@@ -147,13 +164,13 @@ MainSection:NewButton("GameStats gui", "", function()
     GameTimerLable.FontFace = Font.new("rbxasset://fonts/families/Ubuntu.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal);
     GameTimerLable.TextSize = 20;
     GameTimerLable.TextColor3 = Color3.fromRGB(0, 0, 0);
-    GameTimerLable.Size = UDim2.new(1, 0, 0.25, 0);
+    GameTimerLable.Size = UDim2.new(1, 0, 0.2, 0);
     GameTimerLable.BorderColor3 = Color3.fromRGB(0, 0, 0);
-    GameTimerLable.Text = "Game Time:";
+    GameTimerLable.Text = "Hour:";
     GameTimerLable.Name = "Label";
     GameTimerLable.BackgroundTransparency = 1;
 
-    Padding2.PaddingLeft = UDim.new(0, 12);
+    Padding3.PaddingLeft = UDim.new(0, 12);
 
     PowerTimerLable.TextWrapped = true;
     PowerTimerLable.BorderSizePixel = 0;
@@ -162,15 +179,28 @@ MainSection:NewButton("GameStats gui", "", function()
     PowerTimerLable.FontFace = Font.new("rbxasset://fonts/families/Ubuntu.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal);
     PowerTimerLable.TextSize = 20;
     PowerTimerLable.TextColor3 = Color3.fromRGB(0, 0, 0);
-    PowerTimerLable.Size = UDim2.new(1, 0, 0.25, 0);
+    PowerTimerLable.Size = UDim2.new(1, 0, 0.2, 0);
     PowerTimerLable.BorderColor3 = Color3.fromRGB(0, 0, 0);
     PowerTimerLable.Text = "Power Time:";
     PowerTimerLable.Name = "Label";
     PowerTimerLable.BackgroundTransparency = 1;
 
-    Padding3.PaddingLeft = UDim.new(0, 12);
+    Padding4.PaddingLeft = UDim.new(0, 12);
 
     while task.wait() do
+        if game:GetService("ReplicatedStorage").Values.CurrentActive.Hour.Value = 0 then
+            HourLable.Text = "Hour: ".. "None"
+        elseif game:GetService("ReplicatedStorage").Values.CurrentActive.Hour.Value = 1 then
+            HourLable.Text = "Hour: ".. "Blood Hour"
+        elseif game:GetService("ReplicatedStorage").Values.CurrentActive.Hour.Value = 2 then
+            HourLable.Text = "Hour: ".. "Nightmare Hour"
+        elseif game:GetService("ReplicatedStorage").Values.CurrentActive.Hour.Value = 3 then
+            HourLable.Text = "Hour: ".. "Corrupted Hour"
+        elseif game:GetService("ReplicatedStorage").Values.CurrentActive.Hour.Value = 4 then
+            HourLable.Text = "Hour: ".. "Cheese Hour"
+        elseif game:GetService("ReplicatedStorage").Values.CurrentActive.Hour.Value = 5 then
+            HourLable.Text = "Hour: ".. "Orange Hour"
+        end
         GameTimerLable.Text = "Game Time:  ".. game:GetService("ReplicatedStorage").Values.GameTimer.Value
         PowerTimerLable.Text = "Power Time: ".. game:GetService("ReplicatedStorage").Values.PowerTimer.Value
         pcall(function()
