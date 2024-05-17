@@ -1,6 +1,7 @@
 -- Variables
 local Lighting = game:GetService("Lighting")
 local uis = game:GetService("UserInputService")
+local tweenservice = game:GetService("TweenService")
 
 -- Gui
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
@@ -10,6 +11,7 @@ local Window = Library.CreateLib("The rake Noob Edition V1", "BloodTheme")
 local Main = Window:NewTab("Main")
 local Combat = Window:NewTab("Combat")
 local Movement = Window:NewTab("Movement")
+local Teleport = Window:NewTab("Teleport")
 local Esp = Window:NewTab("Esp")
 local World = Window:NewTab("World")
 local Scripts = Window:NewTab("Scripts")
@@ -19,6 +21,7 @@ local Credits = Window:NewTab("Credits")
 local MainSection = Main:NewSection("Main")
 local CombatSection = Combat:NewSection("Combat")
 local MovementSection = Movement:NewSection("Movement")
+local TeleportSection = Teleport:NewSection("Teleport")
 local EspSection = Esp:NewSection("Esp")
 local WorldSection = World:NewSection("World")
 local ScriptsSection = Scripts:NewSection("Scripts")
@@ -211,6 +214,53 @@ MovementSection:NewTextBox("Bypassing JumpPower", "Yay", function(power)
             game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0, _G.jump, 0)
         end
     end)
+end)
+
+-- Teleport
+
+TeleportSection:NewButton("Teleport to Shop", "", function()
+    local tween = tweenservice:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(6), {CFrame = CFrame.new(-277.085724, 5.19999886, -383.390472, 0.0596817881, -2.56916355e-09, -0.998217463, -2.71031708e-09, 1, -2.73579692e-09, 0.998217463, 2.868763e-09, 0.0596817881)})
+    tween:Play()
+end)
+
+TeleportSection:NewButton("Teleport to PowerStation", "", function()
+    local tween = tweenservice:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(6), {CFrame = CFrame.new(375.112946, 9.31250763, 259.84726, -0.0547578856, 5.71634473e-08, -0.998499632, -9.16319891e-08, 1, 6.22744523e-08, 0.998499632, 9.49045216e-08, -0.0547578856)})
+    tween:Play()
+end)
+
+TeleportSection:NewButton("Teleport to Rakoof", "", function()
+    local tween = tweenservice:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(6), {CFrame = workspace.RakoofNPC.HumanoidRootPart.CFrame + Vector3.new(0, 10, 0)})
+    tween:Play()
+end)
+
+TeleportSection:NewButton("Teleport to SurvivorSafeHouse", "", function()
+    local tween = tweenservice:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(6), {CFrame = CFrame.new(349.972809, 24.7999954, -328.633118, 0.00361409876, -8.98743213e-09, -0.999993443, 7.24482963e-09, 1, -8.96130725e-09, 0.999993443, -7.21239557e-09, 0.00361409876)})
+    tween:Play()
+end)
+
+TeleportSection:NewButton("Teleport to ParkSafeHouse", "", function()
+    local tween = tweenservice:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(6), {CFrame = CFrame.new(33.3288879, 14.9999981, -337.05542, 0.999986291, -4.47726691e-08, -0.00523636583, 4.46095605e-08, 1, -3.12661221e-08, 0.00523636583, 3.10321013e-08, 0.999986291)})
+    tween:Play()
+end)
+
+TeleportSection:NewButton("Teleport to DestroyShelter", "", function()
+    local tween = tweenservice:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(6), {CFrame = CFrame.new(-93.672493, 22.9999962, 242.216293, -0.252246112, 2.93387115e-09, -0.967663109, 5.22881782e-09, 1, 1.66888892e-09, 0.967663109, -4.63876315e-09, -0.252246112)})
+    tween:Play()
+end)
+
+TeleportSection:NewButton("Teleport to safe", "", function()
+    local tween = tweenservice:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(6), {CFrame = CFrame.new(476.334473, -15.1925945, -147.251419, -0.0390623249, -1.83383328e-17, 0.999236763, 1.00960762e-07, 1, 3.94677446e-09, -0.999236763, 1.0103787e-07, -0.0390623249)})
+    tween:Play()
+end)
+
+TeleportSection:NewTextBox("Teleport to player", "", function(pl)
+    local tween = tweenservice:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(6), {CFrame = game.Players[pl].Character.HumanoidRootPart.CFrame + Vector3.new(0, 10, 0)})
+    tween:Play()
+end)
+
+TeleportSection:NewDropdown("Teleport to duck", "", {"Rainbow Jose Duck", "Robux Jose Duck", "Sad Jose Duck", "Slenderman Jose Duck", "Top Hat Jose Duck", "[Content Deleted] Jose Duck", "Burger Jose Duck", "Cheese Jose Duck", "O J S E Duck"}, function(duck)
+    local tween = tweenservice:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(6), {CFrame = workspace.Filter.StuffGiversFolder.DuckParts[duck].CFrame + Vector3.new(0, 10, 0)})
+    tween:Play()
 end)
 
 -- Esp
