@@ -39,15 +39,15 @@ MainSection:NewButton("Unlock Chat", "", function()
 end)
 
 MainSection:NewButton("Unlock Camera", "", function()
-    local cam = game.Players.LocalPlayer
-    cam.DevCameraOcclusionMode = 1
+    local pl = game.Players.LocalPlayer
+    pl.DevCameraOcclusionMode = 1
     local camv;
     camv = hookmetamethod(game, "__index", function(self, v)
-        if self == cam and v == "CameraMode" then
+        if self == pl and v == "CameraMode" then
             return 0
-        elseif self == cam and v == "CameraMinZoomDistance" then
+        elseif self == pl and v == "CameraMinZoomDistance" then
             return 0.5
-        elseif self == cam and v == "CameraMaxZoomDistance" then
+        elseif self == pl and v == "CameraMaxZoomDistance" then
             return 999
         end
         return camv(self,v)
@@ -95,17 +95,17 @@ MainSection:NewButton("GameStats gui", "", function()
     local Padding3 = Instance.new("UIPadding", GameTimerLable)
     local PowerTimerLable = Instance.new("TextLabel", Holder)
     local Padding4 = Instance.new("UIPadding", PowerTimerLable)
-
+    
     GameStats.Name = "GameStats";
     GameStats.ZIndexBehavior = Enum.ZIndexBehavior.Sibling;
-
+    
     Main.BackgroundColor3 = Color3.fromRGB(174, 0, 4);
-    Main.Size = UDim2.new(0, 250, 0, 175);
+    Main.Size = UDim2.new(0, 250, 0, 200);
     Main.Position = UDim2.new(0.09108781069517136, 0, 0.06356589496135712, 0);
     Main.Name = "Main";
-
+    
     UICorner1.CornerRadius = UDim.new(0, 6);
-
+    
     GameStatsLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
     GameStatsLabel.FontFace = Font.new("rbxasset://fonts/families/Ubuntu.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal);
     GameStatsLabel.TextSize = 20;
@@ -114,22 +114,22 @@ MainSection:NewButton("GameStats gui", "", function()
     GameStatsLabel.Text = "Game stats";
     GameStatsLabel.Name = "Label";
     GameStatsLabel.BackgroundTransparency = 1;
-
+    
     Holder.BorderSizePixel = 0;
     Holder.BackgroundColor3 = Color3.fromRGB(131, 0, 3);
     Holder.Size = UDim2.new(1, 0, 1, -37);
     Holder.BorderColor3 = Color3.fromRGB(0, 0, 0);
     Holder.Position = UDim2.new(0, 0, 0.21142856776714325, 0);
     Holder.Name = "Holder";
-
+    
     UICorner2.CornerRadius = UDim.new(0, 6);
-
+    
     CornerFixer.BorderSizePixel = 0;
     CornerFixer.BackgroundColor3 = Color3.fromRGB(131, 0, 3);
     CornerFixer.Size = UDim2.new(1, 0, 0, 15);
     CornerFixer.BorderColor3 = Color3.fromRGB(0, 0, 0);
     CornerFixer.Name = "CornerFixer";
-
+    
     HourLable.TextWrapped = true;
     HourLable.BorderSizePixel = 0;
     HourLable.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
@@ -142,9 +142,9 @@ MainSection:NewButton("GameStats gui", "", function()
     HourLable.Text = "Hour:";
     HourLable.Name = "Label";
     HourLable.BackgroundTransparency = 1;
-
+    
     Padding1.PaddingLeft = UDim.new(0, 12);
-
+    
     RakoofHealthLable.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
     RakoofHealthLable.TextXAlignment = Enum.TextXAlignment.Left;
     RakoofHealthLable.FontFace = Font.new("rbxasset://fonts/families/Ubuntu.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal);
@@ -154,9 +154,9 @@ MainSection:NewButton("GameStats gui", "", function()
     RakoofHealthLable.Text = "Rakoof Health:";
     RakoofHealthLable.Name = "Label";
     RakoofHealthLable.BackgroundTransparency = 1;
-
+    
     Padding2.PaddingLeft = UDim.new(0, 12);
-
+    
     GameTimerLable.TextWrapped = true;
     GameTimerLable.BorderSizePixel = 0;
     GameTimerLable.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
@@ -166,12 +166,12 @@ MainSection:NewButton("GameStats gui", "", function()
     GameTimerLable.TextColor3 = Color3.fromRGB(0, 0, 0);
     GameTimerLable.Size = UDim2.new(1, 0, 0.2, 0);
     GameTimerLable.BorderColor3 = Color3.fromRGB(0, 0, 0);
-    GameTimerLable.Text = "Game Time":";
+    GameTimerLable.Text = "Game Time";
     GameTimerLable.Name = "Label";
     GameTimerLable.BackgroundTransparency = 1;
-
+    
     Padding3.PaddingLeft = UDim.new(0, 12);
-
+    
     PowerTimerLable.TextWrapped = true;
     PowerTimerLable.BorderSizePixel = 0;
     PowerTimerLable.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
@@ -184,10 +184,29 @@ MainSection:NewButton("GameStats gui", "", function()
     PowerTimerLable.Text = "Power Time:";
     PowerTimerLable.Name = "Label";
     PowerTimerLable.BackgroundTransparency = 1;
-
-    Padding4.PaddingLeft = UDim.new(0, 12);
-
     
+    Padding4.PaddingLeft = UDim.new(0, 12);
+    
+    while task.wait() do
+        if game:GetService("ReplicatedStorage").Values.CurrentActiveHour.Value == 0 then
+            HourLable.Text = "Hour: ".. "None"
+        elseif game:GetService("ReplicatedStorage").Values.CurrentActiveHour.Value == 1 then
+            HourLable.Text = "Hour: ".. "Blood Hour"
+        elseif game:GetService("ReplicatedStorage").Values.CurrentActiveHour.Value == 2 then
+            HourLable.Text = "Hour: ".. "Nightmare Hour"
+        elseif game:GetService("ReplicatedStorage").Values.CurrentActiveHour.Value == 3 then
+            HourLable.Text = "Hour: ".. "Corrupted Hour"
+        elseif game:GetService("ReplicatedStorage").Values.CurrentActiveHour.Value == 4 then
+            HourLable.Text = "Hour: ".. "Cheese Hour"
+        elseif game:GetService("ReplicatedStorage").Values.CurrentActiveHour.Value == 5 then
+            HourLable.Text = "Hour: ".. "Orange Hour"
+        end
+        GameTimerLable.Text = "Game Time:  ".. game:GetService("ReplicatedStorage").Values.GameTimer.Value
+        PowerTimerLable.Text = "Power Time: ".. game:GetService("ReplicatedStorage").Values.PowerTimer.Value
+        pcall(function()
+            RakoofHealthLable.Text = "Rakoof Health: ".. game.Workspace.RakoofNPC.NPC.Health
+        end)
+    end
 end)
 
 -- Combat
@@ -229,50 +248,50 @@ end)
 
 -- Teleport
 
-TeleportSection:NewButton("Teleport to Shop", "", function()
-    local tween = tweenservice:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(8), {CFrame = CFrame.new(-277.085724, 5.19999886, -383.390472, 0.0596817881, -2.56916355e-09, -0.998217463, -2.71031708e-09, 1, -2.73579692e-09, 0.998217463, 2.868763e-09, 0.0596817881)})
-    tween:Play()
-end)
+-- TeleportSection:NewButton("Teleport to Shop", "", function()
+--     local tween = tweenservice:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(8), {CFrame = CFrame.new(-277.085724, 5.19999886, -383.390472, 0.0596817881, -2.56916355e-09, -0.998217463, -2.71031708e-09, 1, -2.73579692e-09, 0.998217463, 2.868763e-09, 0.0596817881)})
+--     tween:Play()
+-- end)
 
-TeleportSection:NewButton("Teleport to PowerStation", "", function()
-    local tween = tweenservice:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(8), {CFrame = CFrame.new(375.112946, 9.31250763, 259.84726, -0.0547578856, 5.71634473e-08, -0.998499632, -9.16319891e-08, 1, 6.22744523e-08, 0.998499632, 9.49045216e-08, -0.0547578856)})
-    tween:Play()
-end)
+-- TeleportSection:NewButton("Teleport to PowerStation", "", function()
+--     local tween = tweenservice:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(8), {CFrame = CFrame.new(375.112946, 9.31250763, 259.84726, -0.0547578856, 5.71634473e-08, -0.998499632, -9.16319891e-08, 1, 6.22744523e-08, 0.998499632, 9.49045216e-08, -0.0547578856)})
+--     tween:Play()
+-- end)
 
-TeleportSection:NewButton("Teleport to Rakoof", "", function()
-    local tween = tweenservice:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(8), {CFrame = workspace.RakoofNPC.HumanoidRootPart.CFrame + Vector3.new(0, 10, 0)})
-    tween:Play()
-end)
+-- TeleportSection:NewButton("Teleport to Rakoof", "", function()
+--     local tween = tweenservice:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(8), {CFrame = workspace.RakoofNPC.HumanoidRootPart.CFrame + Vector3.new(0, 10, 0)})
+--     tween:Play()
+-- end)
 
-TeleportSection:NewButton("Teleport to SurvivorSafeHouse", "", function()
-    local tween = tweenservice:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(8), {CFrame = CFrame.new(349.972809, 24.7999954, -328.633118, 0.00361409876, -8.98743213e-09, -0.999993443, 7.24482963e-09, 1, -8.96130725e-09, 0.999993443, -7.21239557e-09, 0.00361409876)})
-    tween:Play()
-end)
+-- TeleportSection:NewButton("Teleport to SurvivorSafeHouse", "", function()
+--     local tween = tweenservice:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(8), {CFrame = CFrame.new(349.972809, 24.7999954, -328.633118, 0.00361409876, -8.98743213e-09, -0.999993443, 7.24482963e-09, 1, -8.96130725e-09, 0.999993443, -7.21239557e-09, 0.00361409876)})
+--     tween:Play()
+-- end)
 
-TeleportSection:NewButton("Teleport to ParkSafeHouse", "", function()
-    local tween = tweenservice:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(8), {CFrame = CFrame.new(33.3288879, 14.9999981, -337.05542, 0.999986291, -4.47726691e-08, -0.00523636583, 4.46095605e-08, 1, -3.12661221e-08, 0.00523636583, 3.10321013e-08, 0.999986291)})
-    tween:Play()
-end)
+-- TeleportSection:NewButton("Teleport to ParkSafeHouse", "", function()
+--     local tween = tweenservice:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(8), {CFrame = CFrame.new(33.3288879, 14.9999981, -337.05542, 0.999986291, -4.47726691e-08, -0.00523636583, 4.46095605e-08, 1, -3.12661221e-08, 0.00523636583, 3.10321013e-08, 0.999986291)})
+--     tween:Play()
+-- end)
 
-TeleportSection:NewButton("Teleport to DestroyShelter", "", function()
-    local tween = tweenservice:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(8), {CFrame = CFrame.new(-93.672493, 22.9999962, 242.216293, -0.252246112, 2.93387115e-09, -0.967663109, 5.22881782e-09, 1, 1.66888892e-09, 0.967663109, -4.63876315e-09, -0.252246112)})
-    tween:Play()
-end)
+-- TeleportSection:NewButton("Teleport to DestroyShelter", "", function()
+--     local tween = tweenservice:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(8), {CFrame = CFrame.new(-93.672493, 22.9999962, 242.216293, -0.252246112, 2.93387115e-09, -0.967663109, 5.22881782e-09, 1, 1.66888892e-09, 0.967663109, -4.63876315e-09, -0.252246112)})
+--     tween:Play()
+-- end)
 
-TeleportSection:NewButton("Teleport to safe", "", function()
-    local tween = tweenservice:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(8), {CFrame = CFrame.new(476.334473, -15.1925945, -147.251419, -0.0390623249, -1.83383328e-17, 0.999236763, 1.00960762e-07, 1, 3.94677446e-09, -0.999236763, 1.0103787e-07, -0.0390623249)})
-    tween:Play()
-end)
+-- TeleportSection:NewButton("Teleport to safe", "", function()
+--     local tween = tweenservice:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(8), {CFrame = CFrame.new(476.334473, -15.1925945, -147.251419, -0.0390623249, -1.83383328e-17, 0.999236763, 1.00960762e-07, 1, 3.94677446e-09, -0.999236763, 1.0103787e-07, -0.0390623249)})
+--     tween:Play()
+-- end)
 
-TeleportSection:NewTextBox("Teleport to player", "", function(pl)
-    local tween = tweenservice:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(8), {CFrame = game.Players[pl].Character.HumanoidRootPart.CFrame + Vector3.new(0, 10, 0)})
-    tween:Play()
-end)
+-- TeleportSection:NewTextBox("Teleport to player", "", function(pl)
+--     local tween = tweenservice:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(8), {CFrame = game.Players[pl].Character.HumanoidRootPart.CFrame + Vector3.new(0, 10, 0)})
+--     tween:Play()
+-- end)
 
-TeleportSection:NewDropdown("Teleport to duck", "", {"Rainbow Jose Duck", "Robux Jose Duck", "Sad Jose Duck", "Slenderman Jose Duck", "Top Hat Jose Duck", "[Content Deleted] Jose Duck", "Burger Jose Duck", "Cheese Jose Duck", "O J S E Duck"}, function(duck)
-    local tween = tweenservice:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(8), {CFrame = workspace.Filter.StuffGiversFolder.DuckParts[duck].CFrame + Vector3.new(0, 10, 0)})
-    tween:Play()
-end)
+-- TeleportSection:NewDropdown("Teleport to duck", "", {"Rainbow Jose Duck", "Robux Jose Duck", "Sad Jose Duck", "Slenderman Jose Duck", "Top Hat Jose Duck", "[Content Deleted] Jose Duck", "Burger Jose Duck", "Cheese Jose Duck", "O J S E Duck"}, function(duck)
+--     local tween = tweenservice:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(8), {CFrame = workspace.Filter.StuffGiversFolder.DuckParts[duck].CFrame + Vector3.new(0, 10, 0)})
+--     tween:Play()
+-- end)
 
 -- Esp
 EspSection:NewButton("Rakoof esp", "", function()
