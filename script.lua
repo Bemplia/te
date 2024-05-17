@@ -187,26 +187,7 @@ MainSection:NewButton("GameStats gui", "", function()
 
     Padding4.PaddingLeft = UDim.new(0, 12);
 
-    while task.wait() do
-        if game:GetService("ReplicatedStorage").Values.CurrentActiveHour.Value == 0 then
-            HourLable.Text = "Hour: ".. "None"
-        elseif game:GetService("ReplicatedStorage").Values.CurrentActiveHour.Value == 1 then
-            HourLable.Text = "Hour: ".. "Blood Hour"
-        elseif game:GetService("ReplicatedStorage").Values.CurrentActiveHour.Value == 2 then
-            HourLable.Text = "Hour: ".. "Nightmare Hour"
-        elseif game:GetService("ReplicatedStorage").Values.CurrentActiveHour.Value == 3 then
-            HourLable.Text = "Hour: ".. "Corrupted Hour"
-        elseif game:GetService("ReplicatedStorage").Values.CurrentActiveHour.Value == 4 then
-            HourLable.Text = "Hour: ".. "Cheese Hour"
-        elseif game:GetService("ReplicatedStorage").Values.CurrentActiveHour.Value == 5 then
-            HourLable.Text = "Hour: ".. "Orange Hour"
-        end
-        GameTimerLable.Text = "Game Time:  ".. game:GetService("ReplicatedStorage").Values.GameTimer.Value
-        PowerTimerLable.Text = "Power Time: ".. game:GetService("ReplicatedStorage").Values.PowerTimer.Value
-        pcall(function()
-            RakoofHealthLable.Text = "Rakoof Health: ".. game.Workspace.RakoofNPC.NPC.Health
-        end)
-    end
+    
 end)
 
 -- Combat
