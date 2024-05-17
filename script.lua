@@ -188,7 +188,7 @@ MainSection:NewButton("GameStats gui", "", function()
     Padding4.PaddingLeft = UDim.new(0, 12);
 
     while task.wait() do
-        if game:GetService("ReplicatedStorage").Values.CurrentActive.Hour.Value == 0 then
+        if game:GetService("ReplicatedStorage").Values.CurrentActiveHour.Value == 0 then
             HourLable.Text = "Hour: ".. "None"
         elseif game:GetService("ReplicatedStorage").Values.CurrentActive.Hour.Value == 1 then
             HourLable.Text = "Hour: ".. "Blood Hour"
