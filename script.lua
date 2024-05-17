@@ -166,7 +166,7 @@ MainSection:NewButton("GameStats gui", "", function()
     GameTimerLable.TextColor3 = Color3.fromRGB(0, 0, 0);
     GameTimerLable.Size = UDim2.new(1, 0, 0.2, 0);
     GameTimerLable.BorderColor3 = Color3.fromRGB(0, 0, 0);
-    GameTimerLable.Text = "Game Time:";
+    GameTimerLable.Text = "Game Time":";
     GameTimerLable.Name = "Label";
     GameTimerLable.BackgroundTransparency = 1;
 
@@ -188,17 +188,17 @@ MainSection:NewButton("GameStats gui", "", function()
     Padding4.PaddingLeft = UDim.new(0, 12);
 
     while task.wait() do
-        if game:GetService("ReplicatedStorage").Values.CurrentActive.Hour.Value = 0 then
+        if game:GetService("ReplicatedStorage").Values.CurrentActive.Hour.Value == 0 then
             HourLable.Text = "Hour: ".. "None"
-        elseif game:GetService("ReplicatedStorage").Values.CurrentActive.Hour.Value = 1 then
+        elseif game:GetService("ReplicatedStorage").Values.CurrentActive.Hour.Value == 1 then
             HourLable.Text = "Hour: ".. "Blood Hour"
-        elseif game:GetService("ReplicatedStorage").Values.CurrentActive.Hour.Value = 2 then
+        elseif game:GetService("ReplicatedStorage").Values.CurrentActive.Hour.Value == 2 then
             HourLable.Text = "Hour: ".. "Nightmare Hour"
-        elseif game:GetService("ReplicatedStorage").Values.CurrentActive.Hour.Value = 3 then
+        elseif game:GetService("ReplicatedStorage").Values.CurrentActive.Hour.Value == 3 then
             HourLable.Text = "Hour: ".. "Corrupted Hour"
-        elseif game:GetService("ReplicatedStorage").Values.CurrentActive.Hour.Value = 4 then
+        elseif game:GetService("ReplicatedStorage").Values.CurrentActive.Hour.Value == 4 then
             HourLable.Text = "Hour: ".. "Cheese Hour"
-        elseif game:GetService("ReplicatedStorage").Values.CurrentActive.Hour.Value = 5 then
+        elseif game:GetService("ReplicatedStorage").Values.CurrentActive.Hour.Value == 5 then
             HourLable.Text = "Hour: ".. "Orange Hour"
         end
         GameTimerLable.Text = "Game Time:  ".. game:GetService("ReplicatedStorage").Values.GameTimer.Value
