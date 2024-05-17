@@ -254,7 +254,7 @@ EspSection:NewButton("Players esp", "", function()
     while task.wait(0.5) do
         for i,v in pairs(game.Players:GetChildren()) do
             if v ~= game.Players.LocalPlayer then
-                if v.Character.Torso:FindFirstChild("BoxHandleAdornment") == nil and v.Character:FindFirstChild("BillboardGui") == nil then 
+                if v.Character:FindFirstChild("Torso") and v.Character.Torso:FindFirstChild("BoxHandleAdornment") == nil then 
                     local esp = Instance.new("BoxHandleAdornment", v.Character.Torso)
                     local BillboardGui = Instance.new("BillboardGui", v.Character)
                     local TextLabel = Instance.new("TextLabel", BillboardGui)
